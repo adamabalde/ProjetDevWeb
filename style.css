@@ -1,0 +1,84 @@
+        body {
+            font-family: sans-serif;
+            text-align: center;
+        }
+
+        .container {
+            width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 5px;
+            float: left;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            border: none;
+            border-bottom: 1px solid #ccc; 
+            border-radius: 0;
+            float: left;
+        }
+
+        .form-group::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        button[type="submit"] {
+            background-color: #1E3589; /* Changement de la couleur de fond */
+            color: white; /* Changement de la couleur du texte */
+            padding: 15px 30px; /* Agrandissement de la taille du bouton */
+            width: 100%;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-top: 20px; /* Espacement vers le haut */
+        }
+
+        button[type="submit"]:hover {
+            background-color: #154c79; /* Changement de la couleur de fond au survol */
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+            float: right;
+        }
+       
+        .right-image {
+            position: fixed; /* Position fixe par rapport à la fenêtre */
+            top: 0; /* Alignement sur le haut de la fenêtre */
+            right:0; /* Alignement sur la droite de la fenêtre */
+            margin-top: 10px; /* Espacement par rapport au haut de la fenêtre */
+            width: 450px; /* Largeur de l'image */
+            height: 250; /* Hauteur automatique pour conserver les proportions */
+        }
+        .logo-image {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px; /* Ajustez la largeur selon vos besoins */
+            height: auto; /* Hauteur automatique pour conserver les proportions */
+        }
+       
+        
+        
