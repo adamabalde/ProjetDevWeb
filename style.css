@@ -5,10 +5,12 @@
 
         .container {
             width: 400px;
+            margin: 50px auto;
             margin: 0 auto;
             padding: 20px;
             border-radius: 5px;
             float: left;
+            
         }
 
         h1 {
@@ -31,7 +33,7 @@
             width: calc(100% - 22px);
             padding: 10px;
             border: none;
-            border-bottom: 1px solid #ccc; 
+            border-bottom: 4px solid #1E3589; 
             border-radius: 0;
             float: left;
         }
