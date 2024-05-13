@@ -25,6 +25,7 @@ section {
     flex: 1 0 auto; /* Taille flexible pour chaque section */
     margin-bottom: 20px;
     box-shadow: 5px 5px 20px black; /* Ombre portée pour séparer les sections */
+    border-radius: 5%;
 }
 
 h2 {
@@ -38,7 +39,7 @@ h2 {
     padding: 10px 10px;
     border: none;
     cursor: pointer;
-    border-radius: 25%;
+    border-radius: 15%;
 
 }
 
@@ -61,7 +62,7 @@ div{
 }
 
 img{
-    border-radius: 20%;
+    border-radius: 10%;
     width: 90px;
 }
 
@@ -69,7 +70,7 @@ img{
 .img5{
     height: 300px;
     width: 300px;
-    border-radius: 20%;
+    border-radius: 10%;
 }
 
 h1:before{
