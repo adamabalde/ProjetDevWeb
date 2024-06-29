@@ -4,10 +4,10 @@ require 'config.php';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $role = $_POST['role'];
     $username = $_POST['username'];
-    $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+    $passwd = password_hash($_POST['passwd'], PASSWORD_BCRYPT);
 
-    $stmt = $pdo->prepare("INSERT INTO users (username, password, role) VALUES (?, ?, ?)");
-    if ($stmt->execute([$username, $password, $role])) {
+    $stmt = $pdo->prepare("INSERT INTO users (username, passwd, role) VALUES (?, ?, ?)");
+    if ($stmt->execute([$username, $passwd, $role])) {
         header("Location: login.php?role=$role");
         exit;
     } else {
@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
     <h2>Inscription</h2>
     <form method="POST" action="">
-        <label for="role">Rôle:</label>
+        <label for="role">role:</label>
         <select name="role">
             <option value="responsable">Responsable de Stage</option>
             <option value="maitre">Maitre de Stage</option>
@@ -35,8 +35,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </select>
         <label for="username">Nom d'utilisateur:</label>
         <input type="text" name="username" required>
-        <label for="password">Mot de passe:</label>
-        <input type="password" name="password" required>
+        <label for="passwd">Mot de passe:</label>
+        <input type="password" name="passwd" required>
         <button type="submit">S'inscrire</button>
     </form>
     <?php if (!empty($error)): ?>

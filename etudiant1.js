@@ -87,3 +87,24 @@ fermerDemande.addEventListener('click', () => {
     demande.classList.remove('show');
 });
 
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    const entreprisesLink = document.getElementById('entreprises-link');
+    const sujetsLink = document.getElementById('sujets-link');
+    const entreprisesSection = document.getElementById('entreprises');
+    const sujetsSection = document.getElementById('sujets');
+
+    entreprisesLink.addEventListener('click', function(event) {
+        event.preventDefault();
+        entreprisesSection.style.display = 'block';
+        sujetsSection.style.display = 'none';
+    });
+
+    sujetsLink.addEventListener('click', function(event) {
+        event.preventDefault();
+        sujetsSection.style.display = 'block';
+        entreprisesSection.style.display = 'none';
+    });
+});

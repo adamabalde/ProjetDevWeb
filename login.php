@@ -1,30 +1,43 @@
-
-
-
-
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 session_start();
 require 'config.php';
 
+$error = '';
+$role = isset($_GET['role']) ? $_GET['role'] : '';
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $role = $_POST['role'];
     $username = $_POST['username'];
-    $password = $_POST['password'];
+    $passwd = $_POST['passwd'];
 
     $stmt = $pdo->prepare("SELECT * FROM users WHERE username = ? AND role = ?");
     $stmt->execute([$username, $role]);
     $user = $stmt->fetch();
 
-    if ($user && password_verify($password, $user['password'])) {
-        $_SESSION['user'] = $user;
-        header("Location: {$role}.php");
-        exit;
+    if ($user && isset($user['passwd'])) {
+        if ($passwd === $user['passwd']) {
+            $_SESSION['user'] = $user;
+            if ($role === 'etudiant') {
+                header("Location: Etudiant1.php");
+                exit;
+            } elseif ($role === 'maitre') {
+                header("Location: Maitre_stage.php");
+                exit;
+            } elseif ($role === 'responsable') {
+                header("Location: Res_Stage.php");
+                exit;
+            }
+        } else {
+            $error = "Mot de passe incorrect."; 
+        }
     } else {
-        $error = "Nom d'utilisateur ou mot de passe incorrect.";
+        $error = "Nom d'utilisateur ou rôle incorrect.";
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -33,29 +46,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page de connexion</title>
-    <link rel="stylesheet" href="style1.css">
-    
+    <link rel="stylesheet" href="test.css">
 </head>
 <body>
     <div class="container">
-        <img src="image/log.png" class="three-image" alt=""> 
+        <img src="image/log.png" class="three-image" alt="Logo">
         <h1>Welcome</h1>
-        <form action="#">
+        <form action="" method="POST">
+            <input type="hidden" name="role" value="<?php echo htmlspecialchars($role); ?>">
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" required>
             </div>
             <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
+                <label for="passwd">Mot de passe</label>
+                <input type="password" id="passwd" name="passwd" required>
             </div>
-            <a href="#">Forgot Password?</a> 
-            <br> 
-            <button type="submit">Login</button>
-            <img src="image/etudiant.png" class="right-image" alt="">   
+            <a href="#">Mot de passe oublié?</a>
+            <br>
+            <button type="submit">Se connecter</button>
         </form>
         <?php if (!empty($error)): ?>
-            <p><?php echo $error; ?></p>
+            <p class="error"><?php echo $error; ?></p>
         <?php endif; ?>
     </div>
 </body>

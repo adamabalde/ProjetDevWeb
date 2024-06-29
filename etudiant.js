@@ -1,89 +1,46 @@
-const allSideMenu = document.querySelectorAll('#sidebar .side-menu.top li a');
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('profil-link').addEventListener('click', function () {
+        showSection('profil');
+    });
 
-allSideMenu.forEach(item=> {
-	const li = item.parentElement;
+    document.getElementById('entreprises-link').addEventListener('click', function () {
+        showSection('entreprises');
+    });
 
-	item.addEventListener('click', function () {
-		allSideMenu.forEach(i=> {
-			i.parentElement.classList.remove('active');
-		})
-		li.classList.add('active');
-	})
+    document.getElementById('sujets-link').addEventListener('click', function () {
+        showSection('sujets');
+    });
+
+    function showSection(sectionId) {
+        var sections = document.querySelectorAll('.content-section');
+        sections.forEach(function (section) {
+            section.style.display = 'none';
+        });
+
+        document.getElementById(sectionId).style.display = 'block';
+    }
 });
-// TOGGLE SIDEBAR
-const menuBar = document.querySelector('#content nav .bx.bx-menu');
-const sidebar = document.getElementById('sidebar');
+document.addEventListener('DOMContentLoaded', () => {
+    const postulerButtons = document.querySelectorAll('.btn-postuler');
+    const choisirButtons = document.querySelectorAll('.btn-choisir');
 
-menuBar.addEventListener('click', function () {
-	sidebar.classList.toggle('hide');
-})
-const searchButton = document.querySelector('#content nav form .form-input button');
-const searchButtonIcon = document.querySelector('#content nav form .form-input button .bx');
-const searchForm = document.querySelector('#content nav form');
+    postulerButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const url = button.getAttribute('data-url');
+            if (url) {
+                window.location.href = url;
+            }
+        });
+    });
 
-searchButton.addEventListener('click', function (e) {
-	if(window.innerWidth < 576) {
-		e.preventDefault();
-		searchForm.classList.toggle('show');
-		if(searchForm.classList.contains('show')) {
-			searchButtonIcon.classList.replace('bx-search', 'bx-x');
-		} else {
-			searchButtonIcon.classList.replace('bx-x', 'bx-search');
-		}
-	}
-})
-if(window.innerWidth < 768) {
-	sidebar.classList.add('hide');
-} else if(window.innerWidth > 576) {
-	searchButtonIcon.classList.replace('bx-x', 'bx-search');
-	searchForm.classList.remove('show');
-}
-window.addEventListener('resize', function () {
-	if(this.innerWidth > 576) {
-		searchButtonIcon.classList.replace('bx-x', 'bx-search');
-		searchForm.classList.remove('show');
-	}
-})
-
-const switchMode = document.getElementById('switch-mode');
-
-switchMode.addEventListener('change', function () {
-	if(this.checked) {
-		document.body.classList.add('dark');
-	} else {
-		document.body.classList.remove('dark');
-	}
-})
-const accepterButtons = document.querySelectorAll('.demande .actions .accepter');
-const refuserButtons = document.querySelectorAll('.demande .actions .refuser');
-
-accepterButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        // Ajoutez le code pour accepter la demande
-        alert('Demande acceptée!');
+    choisirButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const confirmAction = confirm("Voulez-vous vraiment choisir ce sujet?");
+            if (confirmAction) {
+                alert("Vous avez choisi ce sujet.");
+            } else {
+                alert("Action annulée.");
+            }
+        });
     });
 });
-
-refuserButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        // Ajoutez le code pour refuser la demande
-        alert('Demande refusée!');
-    });
-});
-
-const overlay = document.querySelector('.overlay');
-const demande = document.querySelector('.demande');
-const demandesLink = document.querySelector('.side-menu.top li:nth-child(2) a');
-const fermerDemande = document.querySelector('.demande .fermer');
-
-demandesLink.addEventListener('click', (e) => {
-    e.preventDefault();
-    overlay.classList.add('show');
-    demande.classList.add('show');
-});
-
-fermerDemande.addEventListener('click', () => {
-    overlay.classList.remove('show');
-    demande.classList.remove('show');
-});
-

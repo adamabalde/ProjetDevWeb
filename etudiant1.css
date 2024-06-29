@@ -1,0 +1,40 @@
+
+.content-section {
+    margin: 20px;
+}
+
+.entreprise {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.entreprise h3 {
+    margin: 0;
+}
+
+.entreprise p {
+    margin: 0 20px 0 0;
+    flex-grow: 1;
+}
+
+.btn-postuler {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-postuler:hover {
+    background-color: #0056b3;
+}
+
+
